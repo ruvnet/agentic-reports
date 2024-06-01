@@ -14,7 +14,9 @@ Welcome to the comprehensive system implementation guide. This document will wal
 6. [Modules and Functions](#modules-and-functions)
 7. [Testing](#testing)
 8. [Running the Application](#running-the-application)
-9. [References](#references)
+9. [Application Uses](#application-uses)
+10. [Features](#features)
+11. [References](#references)
 
 ## Project Overview
 
@@ -66,189 +68,54 @@ project-root/
 
 ## Installation
 
-### Step 1: Clone the Repository
+To get started with the Agentic Reports application, follow these simple steps:
 
-```bash
-git clone <repository-url>
-cd project-root
-```
-
-### Step 2: Run the Installation Script
-
-```bash
-chmod +x install.sh
-./install.sh
-```
-
-### Step 3: Set Up the Development Container
-
-Ensure you have Docker installed and running. Open the project in Visual Studio Code and use the Remote - Containers extension to open the project in a container.
+1. Clone the repository to your local machine.
+2. Run the provided installation script to set up your environment.
+3. Use Docker to build and run the application container.
 
 ## Configuration
 
-### .devcontainer/devcontainer.json
+The application can be easily configured to suit your needs. Here are some ways you can customize your setup:
 
-```json
-{
-    "name": "FastAPI Project",
-    "dockerFile": "Dockerfile",
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-    },
-    "extensions": [
-        "ms-python.python",
-        "ms-azuretools.vscode-docker"
-    ],
-    "postCreateCommand": "pip install -r requirements.txt"
-}
-```
-
-### .devcontainer/Dockerfile
-
-```Dockerfile
-FROM python:3.9-slim
-
-WORKDIR /workspace
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
-```
-
-### requirements.txt
-
-```txt
-fastapi
-pydantic
-pandas
-exa_py
-pytest
-uvicorn
-```
+- Set API keys for Exa and OpenAI services in the `.env` file.
+- Adjust report generation parameters to fine-tune the output.
 
 ## Modules and Functions
 
-### app/main.py
+The application is structured around several key modules and functions:
 
-```python
-from fastapi import FastAPI
-from app.api import endpoints
-
-app = FastAPI()
-
-app.include_router(endpoints.router)
-```
-
-### app/api/endpoints.py
-
-```python
-from fastapi import APIRouter
-from app.services.report_generator import generate_report
-
-router = APIRouter()
-
-@router.post("/generate-report")
-async def generate_report_endpoint(topic: str):
-    report = generate_report(topic)
-    return {"report": report}
-```
-
-### app/core/config.py
-
-```python
-from pydantic import BaseSettings
-
-class Settings(BaseSettings):
-    exa_api_key: str
-    openai_api_key: str
-
-settings = Settings()
-```
-
-### app/models/report.py
-
-```python
-from pydantic import BaseModel
-
-class Report(BaseModel):
-    topic: str
-    content: str
-```
-
-### app/services/report_generator.py
-
-```python
-import openai
-from app.utils.exa_search import search_exa
-
-def generate_report(topic: str) -> str:
-    subqueries = generate_subqueries(topic)
-    exa_results = search_exa(subqueries)
-    report = create_report_from_exa_results(topic, exa_results)
-    return report
-
-def generate_subqueries(topic: str) -> list:
-    # Generate subqueries based on the topic
-    pass
-
-def create_report_from_exa_results(topic: str, exa_results: list) -> str:
-    # Create a report based on Exa search results
-    pass
-```
-
-### app/utils/exa_search.py
-
-```python
-from exa_py import Exa
-from app.core.config import settings
-
-exa = Exa(api_key=settings.exa_api_key)
-
-def search_exa(subqueries: list) -> list:
-    results = []
-    for query in subqueries:
-        response = exa.search(query)
-        results.append(response)
-    return results
-```
+- **API Endpoints**: Define the routes for generating reports.
+- **Report Generation**: Utilizes AI and Exa search capabilities to create comprehensive reports.
+- **Data Validation and Manipulation**: Ensures the integrity of input data and prepares it for processing.
 
 ## Testing
 
-### tests/test_main.py
-
-```python
-from fastapi.testclient import TestClient
-from app.main import app
-
-client = TestClient(app)
-
-def test_generate_report():
-    response = client.post("/generate-report", json={"topic": "AI"})
-    assert response.status_code == 200
-    assert "report" in response.json()
-```
-
-### tests/test_report_generator.py
-
-```python
-from app.services.report_generator import generate_report
-
-def test_generate_report():
-    topic = "AI"
-    report = generate_report(topic)
-    assert isinstance(report, str)
-```
+Testing is an integral part of the development process. The application includes a suite of tests to ensure functionality and reliability.
 
 ## Running the Application
 
-To run the application, use the following command:
+To run the application, use the command:
 
 ```bash
 uvicorn app.main:app --reload
 ```
+
+## Application Uses
+
+The Agentic Reports application can be used in various scenarios, including but not limited to:
+
+- Academic research to compile data on specific topics.
+- Business intelligence to gather insights from vast datasets.
+- Personal projects for learning and exploration.
+
+## Features
+
+The application boasts several unique features:
+
+- **AI-Driven Report Generation**: Leverages advanced AI models to create detailed reports.
+- **Integration with Exa**: Utilizes Exa's powerful search capabilities for data retrieval.
+- **Customizable Reports**: Offers options to tailor reports according to user preferences.
 
 ## References
 
