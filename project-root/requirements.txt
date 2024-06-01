@@ -1,0 +1,6 @@
+fastapi
+pydantic
+pandas
+exa_py
+pytest
+uvicorn
