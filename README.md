@@ -1,6 +1,6 @@
-## Agentic Reports
+# Agentic Reports
 
-# Comprehensive System Implementation with FastAPI, Pydantic, Pandas, Exa, and Pytest
+## Comprehensive System Implementation with FastAPI, Pydantic, Pandas, Exa, and Pytest
 
 Welcome to the comprehensive system implementation guide. This document will walk you through setting up and implementing a system using FastAPI, Pydantic, Pandas, Exa, and Pytest. We will also cover the creation of a bash installation script, .devcontainer configuration, requirements.txt, folder and file structure, and necessary modules.
 
