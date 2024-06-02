@@ -1,5 +1,5 @@
 {
-    "name": "FastAPI Project",
+    "name": "Agentic Reports",
     "dockerFile": "Dockerfile",
     "settings": {
         "terminal.integrated.shell.linux": "/bin/bash"
@@ -8,5 +8,6 @@
         "ms-python.python",
         "ms-azuretools.vscode-docker"
     ],
-    "postCreateCommand": "pip install -r requirements.txt"
+    "postCreateCommand": "pip install -r requirements.txt && pip install . && chmod +x /workspaces/agentic-reports/scripts/setup_env.sh",
+    "postStartCommand": "agentic-reports"
 }
