@@ -51,7 +51,6 @@ def search_exa(subqueries: list, api_key: str, start_published_date: Optional[st
         except Exception as e:
             print(f"Error making API call to Exa for '{subquery}': {e}")
             results.append({'subquery': subquery, 'error': str(e)})
-    
     # print results for debugging subqueries
     # print(f"Search results for subqueries: {results}")
     return results
@@ -91,3 +90,40 @@ def advanced_search_exa(query: str, start_published_date: Optional[str] = None, 
     except Exception as e:
         print(f"Error making API call to Exa for '{query}': {e}")
         return {'query': query, 'error': str(e)}
+    
+
+def find_similar_exa(url: str, num_results: Optional[int] = 10, include_domains: Optional[List[str]] = None, exclude_domains: Optional[List[str]] = None, start_crawl_date: Optional[str] = None, end_crawl_date: Optional[str] = None, start_published_date: Optional[str] = None, end_published_date: Optional[str] = None, category: Optional[str] = None) -> dict:
+    """
+    Finds similar links to the provided URL using the Exa service with customizable options.
+
+    Args:
+        url (str): The URL to find similar links for.
+        num_results (Optional[int]): Number of search results to return.
+        include_domains (Optional[List[str]]): Domains to include in the search.
+        exclude_domains (Optional[List[str]]): Domains to exclude from the search.
+        start_crawl_date (Optional[str]): Start date for crawl date filter.
+        end_crawl_date (Optional[str]): End date for crawl date filter.
+        start_published_date (Optional[str]): Start date for published date filter.
+        end_published_date (Optional[str]): End date for published date filter.
+        category (Optional[str]): Category to focus on.
+        contents (Optional[Dict]): Configuration for contents retrieval.
+
+    Returns:
+        dict: The search results including any specified content retrieval options.
+    """
+    try:
+        search_response = exa.find_similar(
+            url=url,
+            num_results=num_results,
+            include_domains=include_domains,
+            exclude_domains=exclude_domains,
+            start_crawl_date=start_crawl_date,
+            end_crawl_date=end_crawl_date,
+            start_published_date=start_published_date,
+            end_published_date=end_published_date,
+            category=category
+        )
+        return {'url': url, 'results': search_response.results}
+    except Exception as e:
+        print(f"Error making API call to Exa for '{url}': {e}")
+        return {'url': url, 'error': str(e)}

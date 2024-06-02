@@ -34,7 +34,7 @@ async def generate_report_without_exa(topic):
         report = f"Failed to generate report: {str(e)}"
     return report
 
-async def generate_subqueries_from_topic(topic, num_subqueries=6):
+async def generate_subqueries_from_topic(topic, num_subqueries=10):
     print(f"🌿 Generating subqueries from topic: {topic}")
     content = f"I'm going to give you a topic I want to research. I want you to generate {num_subqueries} interesting, diverse search queries that would be useful for generating a report on my main topic. Here is the main topic: {topic}."
     try:
@@ -49,10 +49,11 @@ async def generate_subqueries_from_topic(topic, num_subqueries=6):
         # Split the response into individual lines and strip leading/trailing spaces and numbers
         subqueries = []
         for line in response_content.split('\n'):
-            if line.strip():
+            line = line.strip()
+            if line and line[0].isdigit():
                 # Attempt to split by ". " and take the second part
                 try:
-                    subquery = line.strip(' "').split('. ', 1)[1]
+                    subquery = line.split('. ', 1)[1].strip(' "')
                     subqueries.append(subquery)
                 except IndexError:
                     print(f"Skipping improperly formatted line: {line}")
@@ -128,7 +129,6 @@ def format_exa_results_for_llm(list_of_query_exa_pairs):
         formatted_string += "\n"
     return formatted_string
 
-
 async def generate_report_from_exa_results(topic, list_of_query_exa_pairs):
     print(f"Generating report from Exa results for topic: {topic}")
     formatted_exa_content = format_exa_results_for_llm(list_of_query_exa_pairs)
@@ -157,7 +157,7 @@ def initialize_exa_client():
         return None
 
 # For synchronous version if needed
-def generate_subqueries_from_topic_sync(topic, num_subqueries=6):
+def generate_subqueries_from_topic_sync(topic, num_subqueries=10):
     print(f"🌿 Generating subqueries from topic: {topic}")
     content = f"I'm going to give you a topic I want to research. I want you to generate {num_subqueries} interesting, diverse search queries that would be useful for generating a report on my main topic. Here is the main topic: {topic}."
     try:
