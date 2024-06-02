@@ -6,7 +6,7 @@ router = APIRouter()
 
 async def verify_api_key(request: Request):
     api_key = request.headers.get("x-api-key")
-    if not api_key or api_key not in [settings.exa_api_key, settings.openai_api_key]:
+    if api_key != settings.openai_api_key and api_key != settings.exa_api_key:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API key")
 
 @router.post("/generate-report")
