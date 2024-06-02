@@ -4,13 +4,10 @@ from app.core.config import settings
 
 router = APIRouter()
 
-async def verify_api_key(request: Request):
-    api_key = request.headers.get("x-api-key")
-    if api_key != settings.openai_api_key and api_key != settings.exa_api_key:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API key")
-
 @router.post("/generate-report")
 async def generate_report_endpoint(topic: str, request: Request):
-    await verify_api_key(request)
-    report = generate_report(topic)
-    return {"report": report}
+    try:
+        report = await generate_report(topic)
+        return {"report": report}
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
