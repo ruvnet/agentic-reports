@@ -5,3 +5,4 @@ exa_py
 pytest
 uvicorn
 pydantic_settings
+litellm
