@@ -1,7 +1,9 @@
 # project-root/app/utils/exa_search.py
+
+
 from exa_py import Exa
 from app.core.config import settings
-import requests
+from datetime import datetime, timedelta
 
 # Initialize the Exa client
 exa = Exa(api_key=settings.exa_api_key)
@@ -18,28 +20,20 @@ def search_exa(subqueries: list, api_key: str) -> list:
         list: List of search results.
     """
     results = []
+    one_week_ago = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+
     for subquery in subqueries:
-        result = api_call_to_exa(subquery, api_key)
-        results.append(result)
+        try:
+            search_response = exa.search_and_contents(
+                query=subquery,
+                num_results=5,
+                use_autoprompt=True,
+                start_published_date=one_week_ago,
+                highlights={"num_sentences": 5},
+            )
+            results.append({'subquery': subquery, 'results': search_response.results})
+        except Exception as e:
+            print(f"Error making API call to Exa for '{subquery}': {e}")
+            results.append({'subquery': subquery, 'error': str(e)})
+    print(f"Search results for subqueries: {results}")
     return results
-
-def api_call_to_exa(subquery: str, api_key: str) -> dict:
-    """
-    Makes an API call to the Exa service.
-
-    Args:
-        subquery (str): The subquery to search.
-        api_key (str): API key for the Exa service.
-
-    Returns:
-        dict: The response from the Exa service.
-    """
-    url = f"https://api.exa.com/v1/search?q={subquery}"
-    headers = {"Authorization": f"Bearer {api_key}"}
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error making API call to Exa: {e}")
-        return {}

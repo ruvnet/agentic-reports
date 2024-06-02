@@ -1,9 +1,13 @@
 # report_generator.py is a service module that generates a research report based on a given topic. The module uses the OpenAI API to generate subqueries and search results, and then generates a report based on the search results. The module also provides a synchronous version of the report generation function for testing purposes.
+# always include description
+
+# report_generator.py is a service module that generates a research report based on a given topic. The module uses the OpenAI API to generate subqueries and search results, and then generates a report based on the search results. The module also provides a synchronous version of the report generation function for testing purposes.
 import os
 import json
 from datetime import datetime, timedelta
 from litellm import acompletion
 from app.core.config import settings
+from app.utils.exa_search import search_exa
 
 # Set up API keys using environment variables
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY', settings.openai_api_key)
@@ -49,7 +53,15 @@ def exa_search_each_subquery(subqueries):
     list_of_query_exa_pairs = []
     one_week_ago = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
 
+    # Initialize the Exa client (assuming you have the initialization code)
+    exa_client = initialize_exa_client()  # Add your initialization logic here
+
+    if exa_client is None:
+        print("⚠️ Exa client is not initialized. Check your initialization logic.")
+        return []
+
     for query in subqueries:
+        print(f"🔍 Searching for subquery: {query}")
         try:
             # Perform the search using Exa API
             search_response = exa_client.search(
@@ -58,6 +70,7 @@ def exa_search_each_subquery(subqueries):
                 useAutoprompt=True,
                 type='neural'
             )
+            print(f"✅ Search successful for subquery: {query}")
 
             results = [
                 {
@@ -73,12 +86,29 @@ def exa_search_each_subquery(subqueries):
                 'results': results
             }
             list_of_query_exa_pairs.append(query_object)
+            print(f"📊 Found {len(results)} results for subquery: {query}")
 
         except Exception as e:
             print(f"⚠️ Failed to search for query '{query}': {str(e)}")
             continue
 
+    print(f"🏁 Completed search for all subqueries")
     return list_of_query_exa_pairs
+
+# Placeholder function for initializing the Exa client
+def initialize_exa_client():
+    # Add your actual Exa client initialization logic here
+    try:
+        return Exa(api_key=settings.exa_api_key)
+    except Exception as e:
+        print(f"⚠️ Failed to initialize Exa client: {str(e)}")
+        return None
+
+# Placeholder function for initializing the Exa client
+def initialize_exa_client():
+    # Add your actual Exa client initialization logic here
+    pass
+
 
 def format_exa_results_for_llm(list_of_query_exa_pairs):
     print(f"⌨️  Formatting Exa results for LLM")
