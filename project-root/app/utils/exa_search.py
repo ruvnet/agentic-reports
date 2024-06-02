@@ -51,7 +51,9 @@ def search_exa(subqueries: list, api_key: str, start_published_date: Optional[st
         except Exception as e:
             print(f"Error making API call to Exa for '{subquery}': {e}")
             results.append({'subquery': subquery, 'error': str(e)})
-    print(f"Search results for subqueries: {results}")
+    
+    # print results for debugging subqueries
+    # print(f"Search results for subqueries: {results}")
     return results
 
 def advanced_search_exa(query: str, start_published_date: Optional[str] = None, end_published_date: Optional[str] = None, include_domains: Optional[List[str]] = None, exclude_domains: Optional[List[str]] = None, highlights: Optional[Dict] = None, text: Optional[Dict] = None) -> dict:

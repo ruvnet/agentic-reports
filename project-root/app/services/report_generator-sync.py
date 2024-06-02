@@ -1,3 +1,15 @@
+# project-root/app/services/report_generator-sync.py is a synchronous version of the report_generator.py service. 
+# It uses the synchronous version of the OpenAI API client and synchronous Exa search functions. 
+# This version is suitable for applications that require synchronous processing or do not support asynchronous operations. 
+# The functions in this module perform the following tasks: 
+# - Initialize the Exa client for searching the Exa service.
+# - Generate subqueries from a given topic using the GPT-4 model.
+# - Search Exa for each subquery to retrieve relevant information.
+# - Format the Exa search results for input to the GPT-4 model.
+# - Generate a research report based on the Exa search results using the GPT-4 model.
+# - Perform a search with retries and exponential backoff.
+# - Provide a synchronous version of the report generation process.
+
 import os
 import json
 import time
@@ -16,7 +28,7 @@ os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY', settings.openai_api_k
 async def generate_report(topic: str) -> str:
     print(f"Starting report generation for topic: {topic}")
     subqueries = await generate_subqueries_from_topic(topic)
-    list_of_query_exa_pairs = await exa_search_each_subquery(subqueries)
+    list_of_query_exa_pairs = exa_search_each_subquery(subqueries)
     report = await generate_report_from_exa_results(topic, list_of_query_exa_pairs)
     return report
 
@@ -65,21 +77,29 @@ async def generate_subqueries_from_topic(topic, num_subqueries=6):
         subqueries = [f"Failed to generate subqueries: {str(e)}"]
     return subqueries
 
-async def exa_search_each_subquery(subqueries):
+def exa_search_each_subquery(subqueries):
     print(f"⌛ Searching each subquery")
     list_of_query_exa_pairs = []
 
-    async def perform_search(query, retries=5, delay=2):
+    # Initialize the Exa client (assuming you have the initialization code)
+    exa_client = initialize_exa_client()  # Add your initialization logic here
+
+    if exa_client is None:
+        print("⚠️ Exa client is not initialized. Check your initialization logic.")
+        return []
+
+    def perform_search(query, retries=5, delay=2):
         """Helper function to perform search with retries and exponential backoff."""
         for attempt in range(retries):
             try:
                 # Perform the search using Exa API
-                search_response = search_exa(
-                    subqueries=[query],
-                    api_key=settings.exa_api_key
+                search_response = exa_client.search_and_contents(
+                    query=query,
+                    type='neural'
                 )
-                if search_response and 'results' in search_response[0]:
-                    return search_response[0]
+                # Check if response contains data
+                if search_response and hasattr(search_response, 'results') and search_response.results:
+                    return search_response
                 else:
                     print(f"⚠️ No data found for subquery: {query}")
                     return None
@@ -88,28 +108,23 @@ async def exa_search_each_subquery(subqueries):
                 if "502" in str(e) and attempt < retries - 1:
                     backoff = delay * (2 ** attempt)  # Exponential backoff
                     print(f"Retrying in {backoff} seconds...")
-                    await asyncio.sleep(backoff)
+                    time.sleep(backoff)
                 else:
                     print(f"⚠️ All {retries} attempts failed for query '{query}'")
                     return None
 
-    tasks = []
     for query in subqueries:
         if "Failed to generate subqueries" in query:
             print(f"⚠️ Skipping invalid subquery: {query}")
             continue
 
         print(f"🔍 Searching for subquery: {query}")
-        tasks.append(perform_search(query))
-
-    results = await asyncio.gather(*tasks)
-
-    for query, search_response in zip(subqueries, results):
-        if search_response and 'results' in search_response:
+        search_response = perform_search(query)
+        if search_response:
             print(f"✅ Search successful for subquery: {query}")
             list_of_query_exa_pairs.append({
                 'subquery': query,
-                'results': search_response['results']
+                'results': search_response.results
             })
 
     print(f"🏁 Completed search for all subqueries")
@@ -127,7 +142,6 @@ def format_exa_results_for_llm(list_of_query_exa_pairs):
             formatted_string += f"URL: {url}\nContent: {content}\nPublish Date: {publish_date}\n"
         formatted_string += "\n"
     return formatted_string
-
 
 async def generate_report_from_exa_results(topic, list_of_query_exa_pairs):
     print(f"Generating report from Exa results for topic: {topic}")
@@ -197,19 +211,13 @@ def generate_report_sync(topic):
 def generate_report_from_exa_results_sync(topic, list_of_query_exa_pairs):
     print(f"Generating report from Exa results for topic: {topic}")
     formatted_exa_content = format_exa_results_for_llm(list_of_query_exa_pairs)
-    formatted_exa_content = format_exa_results_for_llm(list_of_query_exa_pairs)
     content = (f"Write a comprehensive and professional three-paragraph research report about {topic} based on the provided information. "
                f"Include citations in the text using footnote notation ([citation #]), for example [2]. First provide the report, followed by a single `References` section "
                f"that only lists the URLs (and their published date) used, in the format [#] <url>. For the published date, only include the month and year. "
-               f"Reset the citations index and ignore the order of citations in the provided information. Here is the information: {formatted_exa_content}."
-               f"only use data, never reference anything not directly provided.")
+               f"Reset the citations index and ignore the order of citations in the provided information. Here is the information: {formatted_exa_content}.")
     completion = openai.ChatCompletion.create(
         model='gpt-4o',
         messages=[{"role": "user", "content": content}]
     )
     report = completion.choices[0].message.content
     return report
-
-# Ensure to call the function within an async context
-# Example usage:
-# asyncio.run(generate_report("latest ai jobs in Toronto"))
