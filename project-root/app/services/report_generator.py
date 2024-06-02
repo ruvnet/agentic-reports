@@ -8,8 +8,8 @@ def generate_report(topic: str) -> str:
     return report
 
 def generate_subqueries(topic: str) -> list:
-    # Generate subqueries based on the topic
-    pass
+    # Ensure an empty list is returned if no subqueries can be generated
+    return []
 
 def create_report_from_exa_results(topic: str, exa_results: list) -> str:
     # Create a report based on Exa search results
