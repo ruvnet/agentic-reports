@@ -1,3 +1,4 @@
+# endpoints.py is the place where you define the FastAPI endpoints. 
 from fastapi import APIRouter, HTTPException, status, Request
 from app.services.report_generator import generate_report
 from app.core.config import settings

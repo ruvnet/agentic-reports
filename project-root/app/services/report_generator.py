@@ -1,3 +1,4 @@
+# report_generator.py is a service module that generates a research report based on a given topic. The module uses the OpenAI API to generate subqueries and search results, and then generates a report based on the search results. The module also provides a synchronous version of the report generation function for testing purposes.
 import os
 import json
 from datetime import datetime, timedelta
@@ -60,11 +61,11 @@ def exa_search_each_subquery(subqueries):
 
             results = [
                 {
-                    "url": result.url,
-                    "text": result.text,
-                    "published_date": result.publishedDate
+                    "url": result["url"],
+                    "text": result["text"],
+                    "published_date": result["publishedDate"]
                 }
-                for result in search_response.results
+                for result in search_response["results"]
             ]
 
             query_object = {
@@ -74,7 +75,7 @@ def exa_search_each_subquery(subqueries):
             list_of_query_exa_pairs.append(query_object)
 
         except Exception as e:
-            print(f"Failed to search for query '{query}': {str(e)}")
+            print(f"⚠️ Failed to search for query '{query}': {str(e)}")
             continue
 
     return list_of_query_exa_pairs

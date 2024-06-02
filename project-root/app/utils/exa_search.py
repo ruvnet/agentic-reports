@@ -1,10 +1,10 @@
+# project-root/app/utils/exa_search.py
 from exa_py import Exa
 from app.core.config import settings
 import requests
 
+# Initialize the Exa client
 exa = Exa(api_key=settings.exa_api_key)
-
-
 
 def search_exa(subqueries: list, api_key: str) -> list:
     """
@@ -34,7 +34,7 @@ def api_call_to_exa(subquery: str, api_key: str) -> dict:
     Returns:
         dict: The response from the Exa service.
     """
-    url = f"https://exa-api.example.com/search?q={subquery}"
+    url = f"https://api.exa.com/v1/search?q={subquery}"
     headers = {"Authorization": f"Bearer {api_key}"}
     try:
         response = requests.get(url, headers=headers)

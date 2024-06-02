@@ -1,3 +1,4 @@
+# config.py: Configuration settings for the application. This file contains the Settings class, which is used to define the configuration settings for the application. The settings are loaded from environment variables using the pydantic_settings library. The describe_fields method is used to provide a description of the configuration settings.
 import os
 from pydantic_settings import BaseSettings
 
