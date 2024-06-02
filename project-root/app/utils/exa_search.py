@@ -28,7 +28,7 @@ def search_exa(subqueries: list, api_key: str) -> list:
                 query=subquery,
                 num_results=5,
                 use_autoprompt=True,
-                start_published_date=one_week_ago,
+                # start_published_date=one_week_ago,
                 highlights={"num_sentences": 5},
             )
             results.append({'subquery': subquery, 'results': search_response.results})

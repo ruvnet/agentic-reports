@@ -66,7 +66,7 @@ def exa_search_each_subquery(subqueries):
             # Perform the search using Exa API
             search_response = exa_client.search(
                 query=query,
-                startPublishedDate=one_week_ago,
+                # startPublishedDate=one_week_ago,
                 useAutoprompt=True,
                 type='neural'
             )
