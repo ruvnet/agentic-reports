@@ -1,3 +1,6 @@
+# Set PYTHONPATH to include the project root directory
+export PYTHONPATH=$PYTHONPATH:/workspaces/agentic-reports/project-root
+
 # Ensure the correct working directory
 cd /workspaces/agentic-reports/project-root
 
