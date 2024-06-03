@@ -1,6 +1,14 @@
 # Agentic Reports
-## A Comprehensive Python Library for Generating Research Reports
+```                                                               
+ _____             _   _         _____                 _       
+|  _  |___ ___ ___| |_|_|___ ___| __  |___ ___ ___ ___| |_ ___ 
+|     | . | -_|   |  _| |  _|___|    -| -_| . | . |  _|  _|_ -|
+|__|__|_  |___|_|_|_| |_|___|   |__|__|___|  _|___|_| |_| |___|
+      |___|                               |_|                  
 
+A Comprehensive Python Library for Generating Research Reports
+
+```
 Welcome to Agentic Reports, a Python library designed to simplify the process of generating comprehensive research reports. This library leverages the power of FastAPI, Pydantic, Pandas, and Exa to provide users with an efficient and streamlined way to create detailed reports based on various data sources.
 
 ### Technical Overview
