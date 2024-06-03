@@ -7,9 +7,11 @@ def read_long_description():
     return long_description
 
 setup(
-    name='Agentic-Reports',
-    version='0.0.18',
-    packages=find_packages(include=['app', 'app.*']),
+    name='agentic_reports',
+    version='0.1.5',
+    packages=find_packages(where='project-root'),
+    package_dir={'': 'project-root'},
+    py_modules=['start'],  # Include the start module
     install_requires=[
         'twine',
         'setuptools',
@@ -18,7 +20,16 @@ setup(
         'black',
         'pytest',
         'pip-upgrader',
+        'fastapi',
+        'uvicorn',
+        'pandas',
+        'pydantic',
+        'exa_py',
+        'pydantic-settings',
+        'virtualenv',
+        'litellm'
     ],
+    python_requires='>=3.10',
     author='rUv',
     author_email='null@ruv.net',
     description='Agent Reporting using Exa.ai API.',
@@ -32,9 +43,6 @@ setup(
         'Topic :: Software Development :: Libraries :: Application Frameworks',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
     ],
     entry_points={
