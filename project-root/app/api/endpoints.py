@@ -1,7 +1,7 @@
 # endpoints.py is the place where you define the FastAPI endpoints. 
 
 from fastapi import APIRouter, HTTPException, status, Request, Body
-from app.services.report_generator import generate_report
+from app.services.report_generator import generate_report, generate_subqueries_from_topic, exa_search_each_subquery
 from app.core.config import settings
 from app.utils.exa_search import advanced_search_exa, find_similar_exa
 from typing import Optional, List, Dict
@@ -13,6 +13,27 @@ async def generate_report_endpoint(topic: str, request: Request):
     try:
         report = await generate_report(topic)
         return {"report": report}
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+
+@router.post("/generate-subqueries")
+async def generate_subqueries_endpoint(
+    topic: str = Body(..., embed=True, example="Latest AI jobs in Toronto"),
+    num_subqueries: int = Body(10, embed=True, example=10)
+):
+    try:
+        subqueries = await generate_subqueries_from_topic(topic, num_subqueries)
+        return {"subqueries": subqueries}
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+
+@router.post("/search-subqueries")
+async def search_subqueries_endpoint(
+    subqueries: List[str] = Body(..., embed=True, example=["AI job market in Canada", "Top AI companies hiring in Toronto"])
+):
+    try:
+        list_of_query_exa_pairs = await exa_search_each_subquery(subqueries)
+        return {"results": list_of_query_exa_pairs}
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
