@@ -50,7 +50,7 @@ To use Agentic Reports, you need to set your OpenAI and Exa API keys. These keys
 #### Obtaining API Keys
 
 - **OpenAI API Key**: To get your OpenAI API key, visit the [OpenAI API page](https://platform.openai.com/account/api-keys) and follow the instructions to create and retrieve your API key.
-- **Exa API Key**: To get your Exa API key, visit the [Exa API page](https://exa-api.com/signup) and follow the instructions to sign up and obtain your API key.
+- **Exa API Key**: To get your Exa API key, visit the [Exa API page](https://docs.exa.ai/) and follow the instructions to sign up and obtain your API key.
 
 #### Automatic Prompt on First Start
 
