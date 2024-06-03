@@ -87,6 +87,113 @@ By following these steps, you can easily set up and use your API keys to get the
    echo $EXA_API_KEY
    ```
 
+### How `Agentic Reports` Works
+
+`Agentic Reports` is designed to make the process of generating detailed research reports seamless and user-friendly.
+
+#### Step 1: Submitting a Topic
+
+1. **Submit a Topic**: The user starts by submitting a topic they want to research. This can be done through a simple API request, where the user provides the main topic of interest. For example, "Latest AI advancements".
+
+#### Step 2: Generating Subqueries
+
+2. **Automatic Subquery Generation**: Once the main topic is submitted, the system automatically generates a set of detailed subqueries related to the main topic. These subqueries help in breaking down the broad topic into specific areas of focus, ensuring a comprehensive analysis.
+
+#### Step 3: Data Collection
+
+3. **Data Gathering**: The system then uses these subqueries to search for relevant information across various sources. This includes fetching data from databases, external APIs, and other repositories. The goal is to gather as much pertinent information as possible.
+
+#### Step 4: Compiling the Report
+
+4. **Report Compilation**: After collecting the data, the system compiles all the gathered information into a cohesive and structured report. This report includes detailed analysis, insights, and findings based on the provided topic and its subqueries.
+
+#### Step 5: Delivering the Report
+
+5. **Report Delivery**: The final report is delivered back to the user in a well-organized format. The user can then review the comprehensive report, which includes citations, data sources, and detailed explanations, providing a thorough understanding of the topic.
+
+### User Experience Highlights
+
+- **Ease of Use**: Users only need to provide a single topic to get started. The rest of the process, including generating subqueries and gathering data, is handled automatically.
+- **Comprehensive Analysis**: By breaking down the main topic into subqueries, the system ensures a deep and thorough exploration of the subject matter.
+- **Time Efficiency**: Automating the research process saves users significant time and effort, providing them with detailed reports quickly.
+- **Detailed Insights**: The final report includes citations and sources, offering users a reliable and informative resource for their research needs.
+
+Agentic Reports, through `Agentic Reports`, streamlines the entire process of creating detailed research reports, making it an invaluable tool for anyone needing comprehensive and accurate information on a specific topic.
+
+### API Reference
+
+Agentic Reports provides several endpoints for generating reports and processing data:
+
+- **/generate-report**: Generates a comprehensive report based on a given topic.
+  - Parameters: `topic` (string)
+  - Example Request: `{"topic": "Latest AI advancements"}`
+
+- **/generate-subqueries**: Generates subqueries from a given topic for detailed analysis.
+  - Parameters: `topic` (string), `num_subqueries` (int)
+  - Example Request: `{"topic": "Latest AI advancements", "num_subqueries": 5}`
+
+- **/search-subqueries**: Searches for information based on provided subqueries.
+  - Parameters: `subqueries` (list of strings)
+  - Example Request: `{"subqueries": ["AI in healthcare", "AI in finance"]}`
+
+- **/advanced-search**: Performs an advanced search with customizable parameters.
+  - Parameters: `query` (string), `start_published_date` (string), `end_published_date` (string), etc.
+  - Example Request: `{"query": "AI", "start_published_date": "2021-01-01", "end_published_date": "2021-12-31"}`
+
+- **/find-similar-links**: Finds similar links to a provided URL.
+  - Parameters: `url` (string), `num_results` (int)
+  - Example Request: `{"url": "https://cnn.com", "num_results": 10}`
+
+- **/generate-report-advanced**: Generates an advanced, comprehensive report based on detailed subqueries and provided prompts.
+  - Parameters: 
+    - `query` (string): The main topic for the report.
+    - `primary_prompt` (string): The primary prompt for the report generation.
+    - `subqueries_prompt` (string): The prompt for generating subqueries.
+    - `report_prompt` (string): The detailed prompt for generating the final report.
+    - `start_published_date` (string, optional): The start date for filtering published articles.
+    - `end_published_date` (string, optional): The end date for filtering published articles.
+    - `include_domains` (list of strings, optional): Domains to include in the search.
+    - `exclude_domains` (list of strings, optional): Domains to exclude from the search.
+    - `highlights` (dict, optional): Parameters for highlighting text.
+    - `text` (dict, optional): Parameters for including HTML tags in the text.
+    - `num_subqueries` (int): The number of subqueries to generate.
+    - `batch_size` (int, optional): The size of each batch for processing subqueries.
+
+### Sample Request JSON
+
+```
+{
+  "query": "string",  // The main topic for the report
+  "primary_prompt": "string",  // The primary prompt for the report generation
+  "subqueries_prompt": "string",  // The prompt for generating subqueries
+  "report_prompt": "string",  // The detailed prompt for generating the final report
+  "start_published_date": "string (YYYY-MM-DD)",  // Optional: The start date for filtering published articles
+  "end_published_date": "string (YYYY-MM-DD)",  // Optional: The end date for filtering published articles
+  "include_domains": ["string"],  // Optional: Domains to include in the search
+  "exclude_domains": ["string"],  // Optional: Domains to exclude from the search
+  "highlights": {
+    "num_sentences": "int"  // Optional: Parameters for highlighting text
+  },
+  "text": {
+    "include_html_tags": "boolean"  // Optional: Parameters for including HTML tags in the text
+  },
+  "num_subqueries": "int",  // The number of subqueries to generate
+  "batch_size": "int"  // Optional: The size of each batch for processing subqueries
+}
+
+```
+- remove "// descriptions"
+
+### Advanced Uses
+
+Agentic Reports can be used in a variety of advanced scenarios, such as:
+
+- **Automated Generation of Research Papers and Articles**: Automatically generate in-depth research papers and articles by leveraging AI models that create comprehensive and well-structured content based on user-defined topics.
+
+- **Data Analysis and Visualization for Business Intelligence**: Utilize the library to perform sophisticated data analysis and create visualizations that aid in business decision-making and strategy formulation.
+
+- **Custom Report Generation for Specific Industries or Topics**: Tailor reports to meet the unique needs of different industries or specific research topics, providing highly relevant and targeted information.
+
 ### Advanced Report Generation
 
 The `@router.post("/generate-report-advanced")` endpoint is designed for generating comprehensive and detailed reports based on advanced queries and parameters. This endpoint allows for a high degree of customization, enabling users to specify detailed prompts, subqueries, and other parameters to tailor the report generation process to their specific needs.
@@ -134,73 +241,6 @@ The endpoint aims to provide users with the ability to generate reports that req
 The response will include a structured report based on the provided parameters. The report will be comprehensive, including analysis, insights, and findings as specified in the prompts and subqueries. The response structure will also include any highlights or specific text content retrieval parameters as requested.
 
 By utilizing this advanced report generation feature, developers and researchers can create detailed and customized reports tailored to their specific research needs and interests.
-
-### How `Agentic Reports` Works
-
-`Agentic Reports` is designed to make the process of generating detailed research reports seamless and user-friendly.
-
-#### Step 1: Submitting a Topic
-
-1. **Submit a Topic**: The user starts by submitting a topic they want to research. This can be done through a simple API request, where the user provides the main topic of interest. For example, "Latest AI advancements".
-
-#### Step 2: Generating Subqueries
-
-2. **Automatic Subquery Generation**: Once the main topic is submitted, the system automatically generates a set of detailed subqueries related to the main topic. These subqueries help in breaking down the broad topic into specific areas of focus, ensuring a comprehensive analysis.
-
-#### Step 3: Data Collection
-
-3. **Data Gathering**: The system then uses these subqueries to search for relevant information across various sources. This includes fetching data from databases, external APIs, and other repositories. The goal is to gather as much pertinent information as possible.
-
-#### Step 4: Compiling the Report
-
-4. **Report Compilation**: After collecting the data, the system compiles all the gathered information into a cohesive and structured report. This report includes detailed analysis, insights, and findings based on the provided topic and its subqueries.
-
-#### Step 5: Delivering the Report
-
-5. **Report Delivery**: The final report is delivered back to the user in a well-organized format. The user can then review the comprehensive report, which includes citations, data sources, and detailed explanations, providing a thorough understanding of the topic.
-
-### User Experience Highlights
-
-- **Ease of Use**: Users only need to provide a single topic to get started. The rest of the process, including generating subqueries and gathering data, is handled automatically.
-- **Comprehensive Analysis**: By breaking down the main topic into subqueries, the system ensures a deep and thorough exploration of the subject matter.
-- **Time Efficiency**: Automating the research process saves users significant time and effort, providing them with detailed reports quickly.
-- **Detailed Insights**: The final report includes citations and sources, offering users a reliable and informative resource for their research needs.
-
-Agentic Reports, through `Agentic Reports`, streamlines the entire process of creating detailed research reports, making it an invaluable tool for anyone needing comprehensive and accurate information on a specific topic.
-
-### API Reference
-
-Agentic Reports provides several endpoints for generating reports and processing data:
-
-- **/generate-report**: Generates a comprehensive report based on a given topic.
-  - Parameters: `topic` (string)
-  - Example Request: `{"topic": "Latest AI advancements"}`
-  
-- **/generate-subqueries**: Generates subqueries from a given topic for detailed analysis.
-  - Parameters: `topic` (string), `num_subqueries` (int)
-  - Example Request: `{"topic": "Latest AI advancements", "num_subqueries": 5}`
-  
-- **/search-subqueries**: Searches for information based on provided subqueries.
-  - Parameters: `subqueries` (list of strings)
-  - Example Request: `{"subqueries": ["AI in healthcare", "AI in finance"]}`
-  
-- **/advanced-search**: Performs an advanced search with customizable parameters.
-  - Parameters: `query` (string), `start_published_date` (string), `end_published_date` (string), etc.
-  - Example Request: `{"query": "AI", "start_published_date": "2021-01-01", "end_published_date": "2021-12-31"}`
-  
-- **/find-similar-links**: Finds similar links to a provided URL.
-  - Parameters: `url` (string), `num_results` (int)
-  - Example Request: `{"url": "https://cnn.com", "num_results": 10}`
-
-### Advanced Uses
-
-Agentic Reports can be used in a variety of advanced scenarios, such as:
-
-- **Automated Generation of Research Papers and Articles**: Automatically generate in-depth research papers and articles by leveraging AI models that create comprehensive and well-structured content based on user-defined topics.
-
-- **Data Analysis and Visualization for Business Intelligence**: Utilize the library to perform sophisticated data analysis and create visualizations that aid in business decision-making and strategy formulation.
-
-- **Custom Report Generation for Specific Industries or Topics**: Tailor reports to meet the unique needs of different industries or specific research topics, providing highly relevant and targeted information.
 
 ### Advanced Overview: Prompt Engineering Approaches
 
