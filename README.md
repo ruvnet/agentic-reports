@@ -285,7 +285,11 @@ One of the most significant impacts of Agentic Engineering is on the workforce a
 ### References
 
 [1] https://www.sciencedirect.com/science/article/pii/S0732118X09000464 (Published: November 2140)
+
 [2] https://x.com/AndrewYNg/status/1795845101979406490 (Published: May 2024)
+
 [3] https://gizmodo.com/ai-agents-openai-chatgpt-google-gemini-reality-sci-fi-1851500474 (Published: May 2024)
+
 [4] https://medium.com/emaunlimited/the-guide-to-ai-employees-how-ema-is-revolutionizing-enterprise-automation-with-agentic-systems-16df43d8e8d8 (Published: May 2024)
+
 [5] https://superagi.com/autonomous-software-development/ (Published: May 2024)
