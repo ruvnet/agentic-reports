@@ -19,7 +19,7 @@ Agentic Reports uses a multi-step process to deliver detailed research reports f
 
 2. **Subquery Generation**: The system automatically generates a set of subqueries related to the main topic. These subqueries break down the broad topic into specific areas of focus, ensuring a comprehensive analysis.
 
-3. **Data Collection**: Using the generated subqueries, the system searches for relevant information across various sources, including databases, external APIs, and other repositories. This step ensures the gathering of extensive and pertinent data.
+3. **Data Collection**: Using the generated subqueries, the system searches for relevant information across various sources, including databases, external APIs, and other repositories. Web data features include filtering by time, source, domain, and other parameters to ensure the information is current and relevant.
 
 4. **Data Compilation**: The collected data is compiled into a cohesive and structured report. The system organizes the information, providing detailed analysis, insights, and findings based on the initial topic and subqueries.
 
