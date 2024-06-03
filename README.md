@@ -201,3 +201,91 @@ Agentic Reports often combines these prompt engineering techniques to maximize t
 - **Advanced logic and reasoning** to critically analyze the data and provide well-rounded insights and projections.
 
 By leveraging these advanced prompt engineering techniques, Agentic Reports ensures that users receive highly detailed, accurate, and insightful reports tailored to their specific research needs.
+
+
+## Sample Outputs
+```
+Starting report generation for topic: Agentic Engineering and the coming agent landscape
+🌿 Generating subqueries from topic: Agentic Engineering and the coming agent landscape
+
+Raw response content: Certainly! Below are ten diverse and interesting search queries that can help you generate a comprehensive report on "Agentic 
+
+Engineering and the coming agent landscape":
+
+1. **"Agentic Engineering: Definitions and Key Concepts"**
+   - Understand the foundational ideas and terminologies related to agentic engineering.
+
+2. **"Historical Evolution and Milestones in Agentic Engineering"**
+   - Explore the development and significant breakthroughs in the field.
+
+3. **"Agentic Engineering in Artificial Intelligence and Robotics"**
+   - Investigate the application of agentic engineering within AI and robotics.
+
+4. **"Ethical Considerations and Challenges in Agentic Engineering"**
+   - Delve into the ethical implications and potential societal impacts.
+
+5. **"Future Landscape of Autonomous Agents in Industry and Everyday Life"**
+   - Analyze future projections and the expected integration of autonomous agents in various sectors.
+
+6. **"Case Studies of Successful Implementation of Agentic Engineering"**
+   - Look at real-world examples and their outcomes to understand practical applications.
+
+7. **"Agentic Engineering: Innovations and Upcoming Technologies"**
+   - Identify the latest innovations and technologies that are shaping the field.
+
+8. **"Comparative Analysis of Agentic Engineering vs Traditional Engineering"**
+   - Compare and contrast agentic engineering with other engineering disciplines.
+
+9. **"Regulatory Frameworks and Policies Around Agentic Engineering"**
+   - Investigate the current and proposed regulations governing the development and deployment of autonomous agents.
+
+10. **"Impact of Agentic Engineering on Employment and Workforce Dynamics"**
+    - Examine how agentic engineering and autonomous agents are transforming job markets and skills requirements.
+
+These queries should provide a well-rounded basis for your research and reporting on the subject.
+Parsed subqueries: 
+
+['**"Agentic Engineering: Definitions and Key Concepts"**', '**"Historical Evolution and Milestones in Agentic Engineering"**', '**"Agentic Engineering in Artificial Intelligence and Robotics"**', '**"Ethical Considerations and Challenges in Agentic Engineering"**', '**"Future Landscape of Autonomous Agents in Industry and Everyday Life"**', '**"Case Studies of Successful Implementation of Agentic Engineering"**', '**"Agentic Engineering: Innovations and Upcoming Technologies"**', '**"Comparative Analysis of Agentic Engineering vs Traditional Engineering"**', '**"Regulatory Frameworks and Policies Around Agentic Engineering"**', '**"Impact of Agentic Engineering on Employment and Workforce Dynamics"**']
+
+⌛ Searching each subquery
+🔍 Searching for subquery: **"Agentic Engineering: Definitions and Key Concepts"**
+🔍 Searching for subquery: **"Historical Evolution and Milestones in Agentic Engineering"**
+🔍 Searching for subquery: **"Agentic Engineering in Artificial Intelligence and Robotics"**
+🔍 Searching for subquery: **"Ethical Considerations and Challenges in Agentic Engineering"**
+🔍 Searching for subquery: **"Future Landscape of Autonomous Agents in Industry and Everyday Life"**
+🔍 Searching for subquery: **"Case Studies of Successful Implementation of Agentic Engineering"**
+🔍 Searching for subquery: **"Agentic Engineering: Innovations and Upcoming Technologies"**
+🔍 Searching for subquery: **"Comparative Analysis of Agentic Engineering vs Traditional Engineering"**
+🔍 Searching for subquery: **"Regulatory Frameworks and Policies Around Agentic Engineering"**
+🔍 Searching for subquery: **"Impact of Agentic Engineering on Employment and Workforce Dynamics"**
+✅ Search successful for subquery: **"Agentic Engineering: Definitions and Key Concepts"**
+✅ Search successful for subquery: **"Historical Evolution and Milestones in Agentic Engineering"**
+✅ Search successful for subquery: **"Agentic Engineering in Artificial Intelligence and Robotics"**
+✅ Search successful for subquery: **"Ethical Considerations and Challenges in Agentic Engineering"**
+✅ Search successful for subquery: **"Future Landscape of Autonomous Agents in Industry and Everyday Life"**
+✅ Search successful for subquery: **"Case Studies of Successful Implementation of Agentic Engineering"**
+✅ Search successful for subquery: **"Agentic Engineering: Innovations and Upcoming Technologies"**
+✅ Search successful for subquery: **"Comparative Analysis of Agentic Engineering vs Traditional Engineering"**
+✅ Search successful for subquery: **"Regulatory Frameworks and Policies Around Agentic Engineering"**
+✅ Search successful for subquery: **"Impact of Agentic Engineering on Employment and Workforce Dynamics"**
+🏁 Completed search for all subqueries
+Generating report from Exa results for topic: Agentic Engineering and the coming agent landscape
+⌨️  Formatting Exa results for LLM
+```
+
+## Sample Report
+### Research Report: Agentic Engineering and the Coming Agent Landscape
+
+Agentic Engineering is an evolving field that seeks to integrate principles of agency into engineered systems, emphasizing attributes such as autonomy, functionality, intentionality, and meaning. Foundational concepts in naturalized accounts of agency highlight the interrelation of these attributes and their evolution over time, showcasing the complex properties that constitute autonomous agents[1]. This approach recognizes the importance of scientific inquiry and continuous formulation of questions to advance the understanding and capabilities of agentic systems. Autonomy and interaction are particularly emphasized as key drivers in developing robust and adaptable agents capable of significantly enhancing human-machine collaboration[1].
+
+Recent advancements in AI and machine learning have catalyzed the development of agentic systems capable of implementing complex workflows and multi-agent collaborations. A course by Andrew Ng and collaborators showcases AutoGen, a framework that enables the creation of specialized agents designed for tasks such as multi-agent collaboration, tool use, and planning[2]. By leveraging such tools, developers can build conversational agents with capabilities ranging from playing chess to generating detailed financial reports with minimal manual intervention. These innovations are not merely confined to digital realms; they are poised to revolutionize physical tasks through integrations with robotics, as seen with AI systems that can autonomously manage real-world tasks such as self-driving cars[3].
+
+One of the most significant impacts of Agentic Engineering is on the workforce and employment dynamics. While there is concern about the potential for AI to displace human jobs, there is also a significant opportunity for enhancing productivity and innovation. AI employees, like the Ema multi-agent system, are designed to augment human roles by automating repetitive and complex tasks[4]. These AI personas integrate with various enterprise applications, enabling users to deploy AI-driven workflows with minimal setup. This shift not only promises to optimize operational efficiency but also necessitates new regulatory frameworks and training programs to ensure that human workers can effectively collaborate with AI counterparts while maintaining data security and ethical standards[4][5].
+
+### References
+
+[1] https://www.sciencedirect.com/science/article/pii/S0732118X09000464 (Published: November 2140)
+[2] https://x.com/AndrewYNg/status/1795845101979406490 (Published: May 2024)
+[3] https://gizmodo.com/ai-agents-openai-chatgpt-google-gemini-reality-sci-fi-1851500474 (Published: May 2024)
+[4] https://medium.com/emaunlimited/the-guide-to-ai-employees-how-ema-is-revolutionizing-enterprise-automation-with-agentic-systems-16df43d8e8d8 (Published: May 2024)
+[5] https://superagi.com/autonomous-software-development/ (Published: May 2024)
