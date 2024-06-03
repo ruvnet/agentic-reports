@@ -1,12 +1,11 @@
 # Agentic Reports
-```                                                               
- _____             _   _         _____                 _       
-|  _  |___ ___ ___| |_|_|___ ___| __  |___ ___ ___ ___| |_ ___ 
-|     | . | -_|   |  _| |  _|___|    -| -_| . | . |  _|  _|_ -|
-|__|__|_  |___|_|_|_| |_|___|   |__|__|___|  _|___|_| |_| |___|
-      |___|                               |_|                  
-
-A Comprehensive Python Library for Generating Research Reports
+```                                                                                                              
+    _   ___ ___ _  _ _____ ___ ___   ___ ___ ___  ___  ___ _____ ___ 
+   /_\ / __| __| \| |_   _|_ _/ __| | _ | __| _ \/ _ \| _ |_   _/ __|
+  / _ | (_ | _|| .` | | |  | | (__  |   | _||  _| (_) |   / | | \__ \
+ /_/ \_\___|___|_|\_| |_| |___\___| |_|_|___|_|  \___/|_|_\ |_| |___/
+                                                                     
+    A Comprehensive Python Library for Generating Research Reports
 
 ```
 Welcome to Agentic Reports, a Python library designed to simplify the process of generating comprehensive research reports. This library leverages the power of FastAPI, Pydantic, Pandas, and Exa to provide users with an efficient and streamlined way to create detailed reports based on various data sources. Agentic Reports uses real data from the internet, considering parameters such as time, source, domain, and other relevant factors to ensure the information is current and accurate.
@@ -30,11 +29,9 @@ By following these steps, Agentic Reports provides users with a streamlined and 
 ### Features
 
 - **AI-Enhanced Report Generation**: Harnesses the power of advanced AI models to create detailed and precise reports, ensuring accuracy and depth in every analysis.
-- **Robust Data Analysis**: Utilizes Exa's powerful search capabilities combined with Pandas for extensive data manipulation and insightful analysis.
+- **Robust Data Analysis**: Utilizes powerful search capabilities combined with Pandas for extensive data manipulation and insightful analysis.
+- **Web Data Features**: Incorporates real-time data from the internet, allowing filtering by time, source, domain, and other parameters to ensure the most current and relevant information.
 - **Flexible Report Customization**: Provides users with the ability to tailor reports to their specific needs, offering a high degree of customization to fit various requirements.
-
-For more information on how to use Agentic Reports and its capabilities, please refer to the official documentation.
-
 
 ### How to Install
 
