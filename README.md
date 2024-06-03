@@ -66,13 +66,25 @@ project-root/
 ├── README.md
 ```
 
-## Installation
+## Running the Application
 
-To get started with the Agentic Reports application, follow these simple steps:
+To start the Agentic Reports application, follow these steps:
 
-1. Clone the repository to your local machine.
-2. Run the provided installation script to set up your environment.
-3. Use Docker to build and run the application container.
+1. **Install the Package:**
+   Install the Agentic Reports package using pip:
+   
+   ```bash
+   pip install agentic-reports
+   ```
+
+2. **Run the Application:**
+   Use the following command to start the application:
+   
+   ```bash
+   agentic-reports
+   ```
+
+This command will initialize the application and start the Uvicorn server on `http://0.0.0.0:8000`.
 
 ## Configuration
 

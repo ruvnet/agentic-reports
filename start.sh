@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Starting message
+echo "Starting the Agentic Reports application setup and server..."
+
 # Set PYTHONPATH to include the project root directory
 export PYTHONPATH=$PYTHONPATH:/workspaces/agentic-reports/project-root
 
