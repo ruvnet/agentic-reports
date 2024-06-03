@@ -46,6 +46,51 @@ pip install agentic-reports
 
 This command will install the library and all its dependencies, making it ready for use in your projects.
 
+### Setting Up API Keys for Agentic Reports
+
+To use Agentic Reports, you need to set your OpenAI and Exa API keys. These keys can be set from the command line or will be prompted the first time you start the library.
+
+#### Obtaining API Keys
+
+- **OpenAI API Key**: To get your OpenAI API key, visit the [OpenAI API page](https://platform.openai.com/account/api-keys) and follow the instructions to create and retrieve your API key.
+- **Exa API Key**: To get your Exa API key, visit the [Exa API page](https://exa-api.com/signup) and follow the instructions to sign up and obtain your API key.
+
+#### Automatic Prompt on First Start
+
+When you first start the Agentic Reports library, it will check for the necessary API keys. If they are not set, it will prompt you to enter them:
+
+```bash
+agentic-reports
+```
+
+You will see prompts like:
+
+```plaintext
+Enter your OPENAI_API_KEY:
+Enter your EXA_API_KEY:
+```
+
+This ensures that you have the required keys set up before the application starts. Once entered, these keys will be used for subsequent runs of the application.
+
+By following these steps, you can easily set up and use your API keys to get the most out of Agentic Reports. For more detailed information, refer to the official documentation provided with the library.
+
+#### Alternative Command Line Setup
+
+1. **Set API Keys Manually**: You can manually set your API keys using the `export` command in your terminal:
+
+   ```bash
+   export OPENAI_API_KEY="your_openai_api_key"
+   export EXA_API_KEY="your_exa_api_key"
+   ```
+
+2. **Check if API Keys are Set**: To verify that your API keys are set, you can use the `echo` command:
+
+   ```bash
+   echo $OPENAI_API_KEY
+   echo $EXA_API_KEY
+   ```
+
+
 ### How `Agentic Reports` Works
 
 `Agentic Reports` is designed to make the process of generating detailed research reports seamless and user-friendly.
