@@ -1,11 +1,11 @@
 import os
 import json
 import time
-
 import asyncio
 import aiohttp
 
 from datetime import datetime, timedelta
+from typing import Optional, List, Dict
 from litellm import acompletion
 from app.core.config import settings
 from app.utils.exa_search import search_exa
@@ -27,7 +27,8 @@ async def generate_report_without_exa(topic):
         completion = await acompletion(
             model='gpt-4o',
             messages=[{"role": "user", "content": content}],
-            stream=False
+            stream=False,
+            timeout=600  
         )
         report = completion['choices'][0]['message']['content']
     except Exception as e:
@@ -41,7 +42,8 @@ async def generate_subqueries_from_topic(topic, num_subqueries=10):
         completion = await acompletion(
             model='gpt-4o',
             messages=[{"role": "user", "content": content}],
-            stream=False
+            stream=False,
+            timeout=600 
         )
         response_content = completion['choices'][0]['message']['content']
         print(f"Raw response content: {response_content}")  # Print raw response for debugging
@@ -140,12 +142,94 @@ async def generate_report_from_exa_results(topic, list_of_query_exa_pairs):
         completion = await acompletion(
             model='gpt-4o',
             messages=[{"role": "user", "content": content}],
-            stream=False
+            stream=False,
+            timeout=600 
         )
         report = completion['choices'][0]['message']['content']
     except Exception as e:
         report = f"Failed to generate report: {str(e)}"
     return report
+
+async def generate_advanced_subqueries_from_topic(topic, subqueries_prompt, num_subqueries=20):
+    print(f"🌿 Generating {num_subqueries} advanced subqueries from topic: {topic}")
+    content = f"{subqueries_prompt} Here is the main topic: {topic}. Generate {num_subqueries} subqueries."
+    try:
+        completion = await acompletion(
+            model='gpt-4o',
+            messages=[{"role": "user", "content": content}],
+            stream=False,
+            timeout=600 
+        )
+        response_content = completion['choices'][0]['message']['content']
+        print(f"Raw response content: {response_content}")  # Print raw response for debugging
+        
+        # Split the response into individual lines and strip leading/trailing spaces and numbers
+        subqueries = []
+        for line in response_content.split('\n'):
+            line = line.strip()
+            if line and line[0].isdigit():
+                # Attempt to split by ". " and take the second part
+                try:
+                    subquery = line.split('. ', 1)[1].strip(' "')
+                    subqueries.append(subquery)
+                except IndexError:
+                    print(f"Skipping improperly formatted line: {line}")
+        
+        # Output the parsed subqueries for debugging
+        print(f"Parsed subqueries: {subqueries}")
+        
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")  # Output unexpected error details
+        subqueries = [f"Failed to generate subqueries: {str(e)}"]
+    return subqueries
+
+
+async def generate_advanced_report_from_exa_results(topic, report_prompt, list_of_query_exa_pairs):
+    print(f"Generating advanced report from Exa results for topic: {topic}")
+    formatted_exa_content = format_exa_results_for_llm(list_of_query_exa_pairs)
+    content = (
+        f"{report_prompt} "
+        f"Here is the information: {formatted_exa_content}."
+    )
+
+    try:
+        completion = await acompletion(
+            model='gpt-4o',
+            messages=[{"role": "user", "content": content}],
+            stream=False,
+            timeout=6000 
+        )
+        report = completion['choices'][0]['message']['content']
+    except Exception as e:
+        report = f"Failed to generate report: {str(e)}"
+    return report
+
+async def generate_advanced_report(
+    query: str,
+    primary_prompt: str,
+    subqueries_prompt: str,
+    report_prompt: str,
+    start_published_date: Optional[str],
+    end_published_date: Optional[str],
+    include_domains: Optional[List[str]],
+    exclude_domains: Optional[List[str]],
+    highlights: Optional[Dict],
+    text: Optional[Dict],
+    num_subqueries: int
+):
+    print(f"Generating advanced report for query: {query}")
+
+    # Step 1: Generate Subqueries
+    subqueries = await generate_advanced_subqueries_from_topic(query, subqueries_prompt, num_subqueries)
+    
+    # Step 2: Perform Exa Search for Each Subquery
+    list_of_query_exa_pairs = await exa_search_each_subquery(subqueries)
+
+    # Step 3: Generate Report from Exa Results using provided report_prompt
+    report = await generate_advanced_report_from_exa_results(query, report_prompt, list_of_query_exa_pairs)
+    
+    return report
+
 
 def initialize_exa_client():
     from exa_py import Exa

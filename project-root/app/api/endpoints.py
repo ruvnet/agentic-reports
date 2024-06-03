@@ -5,6 +5,7 @@ from app.services.report_generator import generate_report, generate_subqueries_f
 from app.core.config import settings
 from app.utils.exa_search import advanced_search_exa, find_similar_exa
 from typing import Optional, List, Dict
+from .advanced_reports import router as advanced_reports_router
 
 router = APIRouter()
 
@@ -106,3 +107,6 @@ async def find_similar_links_endpoint(
         raise e
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)) 
+
+# Include the advanced_reports router
+router.include_router(advanced_reports_router, prefix="/api/v1", tags=["advanced-reports"])
