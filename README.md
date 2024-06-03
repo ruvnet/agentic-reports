@@ -87,6 +87,53 @@ By following these steps, you can easily set up and use your API keys to get the
    echo $EXA_API_KEY
    ```
 
+### Advanced Report Generation
+
+The `@router.post("/generate-report-advanced")` endpoint is designed for generating comprehensive and detailed reports based on advanced queries and parameters. This endpoint allows for a high degree of customization, enabling users to specify detailed prompts, subqueries, and other parameters to tailor the report generation process to their specific needs.
+
+#### Endpoint Purpose and Functionality
+
+The endpoint aims to provide users with the ability to generate reports that require a deeper level of analysis and customization than standard reports. It supports a wide range of parameters that can be used to define the scope, focus, and structure of the generated report.
+
+#### Parameters
+
+- `query` (string): The main query or topic for the report.
+- `primary_prompt` (string): The primary prompt guiding the report's focus.
+- `subqueries_prompt` (string): Prompts for generating subqueries related to the main topic.
+- `report_prompt` (string): The prompt for structuring the final report.
+- `start_published_date` (string, optional): The start date for filtering published data.
+- `end_published_date` (string, optional): The end date for filtering published data.
+- `include_domains` (list of strings, optional): Domains to include in the search.
+- `exclude_domains` (list of strings, optional): Domains to exclude from the search.
+- `highlights` (dict, optional): Parameters for highlighting key sentences.
+- `text` (dict, optional): Parameters for text content retrieval.
+- `num_subqueries` (int): The number of subqueries to generate.
+
+#### Example JSON Request
+
+```json
+{
+  "query": "AI Stocks",
+  "primary_prompt": "Generate a detailed report on the current advancements, performance, and market trends of AI stocks. The report should include an analysis of recent developments, major players, market performance, challenges faced by AI stocks, and future prospects. Ensure that the report is well-structured and professional.",
+  "subqueries_prompt": "Generate 2 interesting, diverse search queries that would be useful for generating a detailed report on AI stocks. These subqueries should cover various aspects of the topic, including recent advancements, market performance, major players, challenges, and future prospects.",
+  "report_prompt": "Write a comprehensive and professional in English, five-paragraph, 200-word research report about AI stocks based on the provided information. Include citations in the text using footnote notation ([citation #]), for example [2]. First provide the report, followed by a single `References` section that only lists the URLs (and their published date) used, in the format [#] <url>. For the published date, only include the month and year. Reset the citations index and ignore the order of citations in the provided information.",
+  "start_published_date": "2024-01-01",
+  "end_published_date": "2024-06-03",
+  "highlights": {
+    "num_sentences": 5
+  },
+  "text": {
+    "include_html_tags": false
+  },
+  "num_subqueries": 5
+}
+```
+
+#### Expected Response
+
+The response will include a structured report based on the provided parameters. The report will be comprehensive, including analysis, insights, and findings as specified in the prompts and subqueries. The response structure will also include any highlights or specific text content retrieval parameters as requested.
+
+By utilizing this advanced report generation feature, developers and researchers can create detailed and customized reports tailored to their specific research needs and interests.
 
 ### How `Agentic Reports` Works
 
