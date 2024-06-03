@@ -8,7 +8,7 @@ def read_long_description():
 
 setup(
     name='Agentic-Reports',
-    version='0.0.2',
+    version='0.0.7',
     packages=find_packages(include=['app', 'app.*']),
     install_requires=[
         'twine',

@@ -1,162 +1,150 @@
 # Agentic Reports
+## A Comprehensive Python Library for Generating Research Reports
 
-## Comprehensive System Implementation with FastAPI, Pydantic, Pandas, Exa, and Pytest
+Welcome to Agentic Reports, a Python library designed to simplify the process of generating comprehensive research reports. This library leverages the power of FastAPI, Pydantic, Pandas, and Exa to provide users with an efficient and streamlined way to create detailed reports based on various data sources.
 
-Welcome to the comprehensive system implementation guide. This document will walk you through setting up and implementing a system using FastAPI, Pydantic, Pandas, Exa, and Pytest. We will also cover the creation of a bash installation script, .devcontainer configuration, requirements.txt, folder and file structure, and necessary modules.
+### Technical Overview
 
-## Table of Contents
+Agentic Reports uses a multi-step process to deliver detailed research reports from a variety of sources:
 
-1. [Project Overview](#project-overview)
-2. [Prerequisites](#prerequisites)
-3. [Folder and File Structure](#folder-and-file-structure)
-4. [Installation](#installation)
-5. [Configuration](#configuration)
-6. [Modules and Functions](#modules-and-functions)
-7. [Testing](#testing)
-8. [Running the Application](#running-the-application)
-9. [Application Uses](#application-uses)
-10. [Features](#features)
-11. [References](#references)
+1. **User Query Submission**: Users start by submitting a topic they wish to research. This can be done through a simple API request.
 
-## Project Overview
+2. **Subquery Generation**: The system automatically generates a set of subqueries related to the main topic. These subqueries break down the broad topic into specific areas of focus, ensuring a comprehensive analysis.
 
-This project aims to create a high-performance API using FastAPI, Pydantic for data validation, Pandas for data manipulation, Exa for search capabilities, and Pytest for testing. The system will generate comprehensive research reports based on user queries.
+3. **Data Collection**: Using the generated subqueries, the system searches for relevant information across various sources, including databases, external APIs, and other repositories. This step ensures the gathering of extensive and pertinent data.
 
-## Prerequisites
+4. **Data Compilation**: The collected data is compiled into a cohesive and structured report. The system organizes the information, providing detailed analysis, insights, and findings based on the initial topic and subqueries.
 
-Before you begin, ensure you have the following installed on your machine:
+5. **Report Delivery**: The final report, complete with citations and data sources, is delivered back to the user in a well-organized format. This ensures that users receive a thorough and reliable resource for their research needs.
 
-- Python 3.7+
-- Docker
-- Git
+By following these steps, Agentic Reports provides users with a streamlined and efficient way to generate comprehensive research reports, making it an invaluable tool for in-depth analysis and information gathering.
 
-## Folder and File Structure
+### Features
 
-The project structure is organized as follows:
+- **AI-Enhanced Report Generation**: Harnesses the power of advanced AI models to create detailed and precise reports, ensuring accuracy and depth in every analysis.
+- **Robust Data Analysis**: Utilizes Exa's powerful search capabilities combined with Pandas for extensive data manipulation and insightful analysis.
+- **Flexible Report Customization**: Provides users with the ability to tailor reports to their specific needs, offering a high degree of customization to fit various requirements.
 
-```
-project-root/
-├── app/
-│   ├── __init__.py
-│   ├── main.py
-│   ├── api/
-│   │   ├── __init__.py
-│   │   ├── endpoints.py
-│   ├── core/
-│   │   ├── __init__.py
-│   │   ├── config.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── report.py
-│   ├── services/
-│   │   ├── __init__.py
-│   │   ├── report_generator.py
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   ├── exa_search.py
-├── tests/
-│   ├── __init__.py
-│   ├── test_main.py
-│   ├── test_report_generator.py
-├── .devcontainer/
-│   ├── devcontainer.json
-│   ├── Dockerfile
-├── requirements.txt
-├── install.sh
-├── README.md
-```
+For more information on how to use Agentic Reports and its capabilities, please refer to the official documentation.
 
-## Running the Application
 
-To start the Agentic Reports application, follow these steps:
+### How to Install
 
-1. **Install the Package:**
-   Install the Agentic Reports package using pip:
-   
-   ```bash
-   pip install agentic-reports
-   ```
-
-2. **Run the Application:**
-   Use the following command to start the application:
-   
-   ```bash
-   agentic-reports
-   ```
-
-This command will initialize the application and start the Uvicorn server on `http://0.0.0.0:8000`.
-
-## Configuration
-
-The application can be easily configured to suit your needs. Here are some ways you can customize your setup:
-
-- Set API keys for Exa and OpenAI services in the `.env` file.
-- Adjust report generation parameters to fine-tune the output.
-
-## Modules and Functions
-
-The application is structured around several key modules and functions:
-
-- **API Endpoints**: Define the routes for generating reports.
-- **Report Generation**: Utilizes AI and Exa search capabilities to create comprehensive reports.
-- **Data Validation and Manipulation**: Ensures the integrity of input data and prepares it for processing.
-
-## Testing
-
-Testing is an integral part of the development process. The application includes a suite of tests to ensure functionality and reliability.
-
-## Running the Application
-
-To run the application, use the command:
+To install Agentic Reports, simply use pip:
 
 ```bash
-uvicorn app.main:app --reload
+pip install agentic-reports
 ```
 
-## Application Uses
+This command will install the library and all its dependencies, making it ready for use in your projects.
 
-The Agentic Reports application can be used in various scenarios, including but not limited to:
+### How `Agentic Reports` Works
 
-- Academic research to compile data on specific topics.
-- Business intelligence to gather insights from vast datasets.
-- Personal projects for learning and exploration.
+`Agentic Reports` is designed to make the process of generating detailed research reports seamless and user-friendly.
 
-## Features
+#### Step 1: Submitting a Topic
 
-The application boasts several unique features:
+1. **Submit a Topic**: The user starts by submitting a topic they want to research. This can be done through a simple API request, where the user provides the main topic of interest. For example, "Latest AI advancements".
 
-- **AI-Driven Report Generation**: Leverages advanced AI models to create detailed reports.
-- **Integration with Exa**: Utilizes Exa's powerful search capabilities for data retrieval.
-- **Customizable Reports**: Offers options to tailor reports according to user preferences.
+#### Step 2: Generating Subqueries
 
-## References
+2. **Automatic Subquery Generation**: Once the main topic is submitted, the system automatically generates a set of detailed subqueries related to the main topic. These subqueries help in breaking down the broad topic into specific areas of focus, ensuring a comprehensive analysis.
 
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Pydantic Documentation](https://pydantic-docs.helpmanual.io/)
-- [Pandas Documentation](https://pandas.pydata.org/)
-- [Exa Documentation](https://exa.ai/)
-- [Pytest Documentation](https://docs.pytest.org/)
+#### Step 3: Data Collection
 
-This detailed plan should help you set up and implement the system effectively. If you have any questions or need further assistance, feel free to reach out.
+3. **Data Gathering**: The system then uses these subqueries to search for relevant information across various sources. This includes fetching data from databases, external APIs, and other repositories. The goal is to gather as much pertinent information as possible.
 
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/2592765/73f4bc8c-837f-4711-a4b5-d4dadd91f486/paste.txt
-[2] https://fastapi.tiangolo.com/tutorial/testing/
-[3] https://www.youtube.com/watch?v=qNVsQ4R9Lsg
-[4] https://shuaib.org/python/fastapi/quickly-set-up-a-fastapi-app-with-this-script/
-[5] https://www.youtube.com/watch?v=jM-zWp8dNQA
-[6] https://dev.to/timo_reusch/how-i-structure-big-fastapi-projects-260e
-[7] https://www.reddit.com/r/FastAPI/comments/uxnso3/fastapi_large_app_structure/
-[8] https://stackoverflow.com/questions/70448668/passing-pandas-dataframe-to-fastapi
-[9] https://testdriven.io/blog/fastapi-crud/
-[10] https://andypickup.com/developing-in-python-with-dev-containers-part-2-a-simple-fastapi-project-with-step-debugging-e52599b7ce61?gi=beae3ea2f4fd
-[11] https://fastapi.tiangolo.com/features/
-[12] https://fastapi.tiangolo.com/tutorial/first-steps/
-[13] https://github.com/rochacbruno/fastapi-project-template/blob/main/requirements.txt
-[14] https://fastapi.tiangolo.com/advanced/settings/
-[15] https://plainenglish.io/blog/how-to-generate-requirements-txt-for-your-python-project-235183799d2f
-[16] https://pytest-with-eric.com/pytest-advanced/pytest-fastapi-testing/
-[17] https://christophergs.com/tutorials/ultimate-fastapi-tutorial-pt-4-pydantic-schemas/
-[18] https://fastapi.tiangolo.com/tutorial/schema-extra-example/
-[19] https://www.reddit.com/r/FastAPI/comments/115en24/help_how_to_make_ml_predictions_of_a_pandas/
-[20] https://fastapi.tiangolo.com/deployment/docker/
+#### Step 4: Compiling the Report
+
+4. **Report Compilation**: After collecting the data, the system compiles all the gathered information into a cohesive and structured report. This report includes detailed analysis, insights, and findings based on the provided topic and its subqueries.
+
+#### Step 5: Delivering the Report
+
+5. **Report Delivery**: The final report is delivered back to the user in a well-organized format. The user can then review the comprehensive report, which includes citations, data sources, and detailed explanations, providing a thorough understanding of the topic.
+
+### User Experience Highlights
+
+- **Ease of Use**: Users only need to provide a single topic to get started. The rest of the process, including generating subqueries and gathering data, is handled automatically.
+- **Comprehensive Analysis**: By breaking down the main topic into subqueries, the system ensures a deep and thorough exploration of the subject matter.
+- **Time Efficiency**: Automating the research process saves users significant time and effort, providing them with detailed reports quickly.
+- **Detailed Insights**: The final report includes citations and sources, offering users a reliable and informative resource for their research needs.
+
+Agentic Reports, through `Agentic Reports`, streamlines the entire process of creating detailed research reports, making it an invaluable tool for anyone needing comprehensive and accurate information on a specific topic.
+
+### API Reference
+
+Agentic Reports provides several endpoints for generating reports and processing data:
+
+- **/generate-report**: Generates a comprehensive report based on a given topic.
+  - Parameters: `topic` (string)
+  - Example Request: `{"topic": "Latest AI advancements"}`
+  
+- **/generate-subqueries**: Generates subqueries from a given topic for detailed analysis.
+  - Parameters: `topic` (string), `num_subqueries` (int)
+  - Example Request: `{"topic": "Latest AI advancements", "num_subqueries": 5}`
+  
+- **/search-subqueries**: Searches for information based on provided subqueries.
+  - Parameters: `subqueries` (list of strings)
+  - Example Request: `{"subqueries": ["AI in healthcare", "AI in finance"]}`
+  
+- **/advanced-search**: Performs an advanced search with customizable parameters.
+  - Parameters: `query` (string), `start_published_date` (string), `end_published_date` (string), etc.
+  - Example Request: `{"query": "AI", "start_published_date": "2021-01-01", "end_published_date": "2021-12-31"}`
+  
+- **/find-similar-links**: Finds similar links to a provided URL.
+  - Parameters: `url` (string), `num_results` (int)
+  - Example Request: `{"url": "https://cnn.com", "num_results": 10}`
+
+### Advanced Uses
+
+Agentic Reports can be used in a variety of advanced scenarios, such as:
+
+- **Automated Generation of Research Papers and Articles**: Automatically generate in-depth research papers and articles by leveraging AI models that create comprehensive and well-structured content based on user-defined topics.
+
+- **Data Analysis and Visualization for Business Intelligence**: Utilize the library to perform sophisticated data analysis and create visualizations that aid in business decision-making and strategy formulation.
+
+- **Custom Report Generation for Specific Industries or Topics**: Tailor reports to meet the unique needs of different industries or specific research topics, providing highly relevant and targeted information.
+
+### Advanced Overview: Prompt Engineering Approaches
+
+Agentic Reports incorporates advanced prompt engineering techniques to enhance the quality and depth of generated reports. These approaches include multi-hop prompting, recursive strategies, graph structures, and advanced logic and reasoning.
+
+#### Multi-Hop Prompting
+
+Multi-hop prompting involves breaking down complex queries into a series of intermediate steps or subqueries. Each subquery aims to gather specific pieces of information that, when combined, provide a comprehensive answer to the original query. This approach ensures that the final report is detailed and well-supported by relevant data.
+
+**Example**: To generate a report on "The impact of AI in healthcare," the system might break it down into subqueries such as:
+1. Historical development of AI in healthcare.
+2. Current applications of AI in diagnostics and treatment.
+3. Case studies on AI-driven healthcare improvements.
+4. Future trends and potential of AI in healthcare.
+
+#### Recursive Prompting
+
+Recursive prompting involves iterative querying, where the system refines its queries based on previous responses. This technique ensures that the gathered information is accurate and relevant, progressively narrowing down the search to provide precise and comprehensive results.
+
+**Example**: For a topic like "AI's role in climate change mitigation," the initial query might focus on general applications of AI. Based on the gathered data, subsequent queries will delve deeper into specific areas such as AI in renewable energy optimization, AI in carbon footprint reduction, and AI-driven climate modeling.
+
+#### Graph Structures
+
+Graph-based prompting leverages graph structures to map relationships between different pieces of information. By creating a network of interconnected data points, the system can identify and explore intricate connections, providing a more holistic and nuanced report.
+
+**Example**: When researching "AI in financial markets," a graph structure can help map out the relationships between AI technologies, market trends, regulatory impacts, and economic outcomes. This interconnected approach allows for a comprehensive analysis of how AI influences various aspects of financial markets.
+
+#### Advanced Logic and Reasoning
+
+Advanced logic and reasoning techniques are used to enhance the depth and accuracy of the reports. These techniques involve critical thinking, hypothesis testing, and evidence-based analysis to ensure that the generated content is logical, coherent, and well-supported by data.
+
+**Example**: For a report on "Ethical implications of AI," the system uses advanced reasoning to weigh different ethical considerations, analyze case studies, and provide balanced arguments. It critically examines various perspectives, ensuring a thorough and unbiased analysis.
+
+### Combining Approaches
+
+Agentic Reports often combines these prompt engineering techniques to maximize the quality and comprehensiveness of the generated reports. By integrating multi-hop prompting, recursive strategies, graph structures, and advanced logic and reasoning, the system can tackle complex topics with precision and depth.
+
+**Example**: Generating a report on "The future of AI in smart cities" might involve:
+- **Multi-hop prompting** to break down the topic into subqueries like AI in traffic management, AI in energy efficiency, and AI in public safety.
+- **Recursive prompting** to iteratively refine these subqueries based on initial findings.
+- **Graph structures** to map out the relationships between different AI applications and their impacts on smart city development.
+- **Advanced logic and reasoning** to critically analyze the data and provide well-rounded insights and projections.
+
+By leveraging these advanced prompt engineering techniques, Agentic Reports ensures that users receive highly detailed, accurate, and insightful reports tailored to their specific research needs.
