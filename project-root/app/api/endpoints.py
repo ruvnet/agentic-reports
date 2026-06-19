@@ -1,6 +1,6 @@
 # endpoints.py is the place where you define the FastAPI endpoints. 
 
-from fastapi import APIRouter, HTTPException, status, Request, Body
+from fastapi import APIRouter, HTTPException, status, Body
 from app.services.report_generator import generate_report, generate_subqueries_from_topic, exa_search_each_subquery
 from app.core.config import settings
 from app.utils.exa_search import advanced_search_exa, find_similar_exa
@@ -10,7 +10,7 @@ from .advanced_reports import router as advanced_reports_router
 router = APIRouter()
 
 @router.post("/generate-report")
-async def generate_report_endpoint(topic: str, request: Request):
+async def generate_report_endpoint(topic: str = Body(..., embed=True)):
     try:
         report = await generate_report(topic)
         return {"report": report}
