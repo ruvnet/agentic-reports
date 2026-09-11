@@ -1,0 +1,32 @@
+{
+  "name": "@ruvnet/agentic-reports",
+  "version": "2.0.0-alpha.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "benchmark": "node src/cli.mjs benchmark",
+    "start": "node src/cli.mjs",
+    "mcp": "node src/cli.mjs mcp"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.0.0"
+  },
+  "files": [
+    "src/",
+    "vendor/",
+    "docs/",
+    "README.md",
+    "LICENSE",
+    "tests/",
+    "fixtures/",
+    "start.py"
+  ]
+}

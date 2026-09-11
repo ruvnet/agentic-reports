@@ -8,27 +8,10 @@ def read_long_description():
 
 setup(
     name='agentic_reports',
-    version='0.1.5',
-    packages=find_packages(where='project-root'),
-    package_dir={'': 'project-root'},
-    py_modules=['start'],  # Include the start module
-    install_requires=[
-        'twine',
-        'setuptools',
-        'wheel',
-        'flake8',
-        'black',
-        'pytest',
-        'pip-upgrader',
-        'fastapi',
-        'uvicorn',
-        'pandas',
-        'pydantic',
-        'exa_py',
-        'pydantic-settings',
-        'virtualenv',
-        'litellm'
-    ],
+    version='0.1.6',
+    packages=[],
+    py_modules=['start'],
+    install_requires=[],
     python_requires='>=3.10',
     author='rUv',
     author_email='null@ruv.net',

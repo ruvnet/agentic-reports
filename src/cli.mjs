@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+import {generateReport,verifyReport,compareReports,renderHtml,parseInput,MAX_INPUT} from './reports.mjs';
+import {status,runTests,benchmark} from './operations.mjs';
+export async function readInput(stream=process.stdin){let size=0,chunks=[];const timer=setTimeout(()=>stream.destroy(Error('Input deadline exceeded')),10000);try{for await(const chunk of stream){size+=chunk.length;if(size>MAX_INPUT)throw Error('Input exceeds 512 KiB');chunks.push(chunk);}return parseInput(Buffer.concat(chunks).toString('utf8'));}finally{clearTimeout(timer);}}
+async function main(){const action=process.argv[2]||'status';if(process.argv.length>3)throw Error('Unexpected arguments');if(action==='mcp'){await (await import('./mcp.mjs')).start();return;}let result;
+ switch(action){case 'status':result=status();break;case 'test':result=await runTests({allowed:true});if(!result.passed)process.exitCode=1;break;case 'benchmark':result=benchmark();break;case 'discover':result=await (await import('./discovery.mjs')).discover(await readInput());break;case 'generate':result=generateReport(await readInput());break;case 'verify':result=verifyReport(await readInput());break;case 'compare':result=compareReports(await readInput());break;case 'html':process.stdout.write(renderHtml(await readInput()));return;default:throw Error('Unknown action');}process.stdout.write(JSON.stringify(result)+'\n');}
+main().catch(()=>{process.stderr.write('Agentic Reports rejected the request. Check the documented schema and limits.\n');process.exitCode=2;});

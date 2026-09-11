@@ -1,21 +1,7 @@
-import os
-import subprocess
-
-def prompt_for_api_key(env_var_name):
-    api_key = input(f"Enter your {env_var_name}: ")
-    os.environ[env_var_name] = api_key
-
+"""Retired legacy launcher. No credentials, installs, or network calls."""
+import sys
 def main():
-    # Check for OPENAI_API_KEY
-    if not os.getenv('OPENAI_API_KEY'):
-        prompt_for_api_key('OPENAI_API_KEY')
-
-    # Check for EXA_API_KEY
-    if not os.getenv('EXA_API_KEY'):
-        prompt_for_api_key('EXA_API_KEY')
-
-    # Run the shell script
-    subprocess.run(['bash', './start.sh'], check=True)
-
+    sys.stderr.write("Legacy Python API retired. Use Node 24: npm ci && node src/cli.mjs status. See README.md.\n")
+    return 2
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
