@@ -13,6 +13,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -26,6 +28,7 @@ jobs:
       - run: |
           mkdir -p artifacts
           node src/cli.mjs benchmark > artifacts/benchmark.json
+          node bench/compare.mjs > artifacts/verification-comparison.json
           node src/cli.mjs generate < fixtures/evidence.json > artifacts/report.json
           node src/cli.mjs verify < artifacts/report.json > artifacts/verification.json
           node src/cli.mjs html < artifacts/report.json > artifacts/report.html

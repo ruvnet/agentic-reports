@@ -76,7 +76,7 @@ This sends the topic to Exa and can incur provider charges. It makes one request
 
 ## Limits and migration
 
-Evidence requests are limited to 128 KiB, 100 sources, 16,384 characters per source, 20 selected passages and 4,096 characters per quote. CLI/MCP frames are bounded to 512 KiB so two reports fit in a comparison. CLI stdin has a 10 second deadline. Local performance is documented in [validation](docs/VALIDATION.md); there is no SOTA quality claim.
+Evidence requests are limited to 128 KiB, 100 sources, 16,384 characters per source, 20 selected passages and 4,096 characters per quote. CLI/MCP frames are bounded to 512 KiB so two reports fit in a comparison. CLI stdin has a 10 second deadline. Local performance is documented in [validation](docs/VALIDATION.md). The measured verification optimization reduced fixture p95 by 18.6% for one 100 source report and 24.7% for ten independent reports while preserving every report and citation result. There is no SOTA quality claim.
 
 The old unauthenticated Python paid API is retired and its launchers fail before prompting for credentials or installing packages. Existing clients must migrate explicitly; the new API does not preserve old `/generate-report` semantics. Historical provider code is retained for source history and excluded from the Node release artifact. The old PyPI package is not updated by this Git merge. See [migration and security](docs/SECURITY.md) and [ADR 001](docs/adr/001-evidence-first.md).
 
