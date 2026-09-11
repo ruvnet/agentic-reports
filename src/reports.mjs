@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {isDeepStrictEqual} from 'node:util';
 import {z} from 'zod';
 import {index} from '../vendor/agentic-search/search.js';
 export const canonical = value => JSON.stringify(value, (_,v)=>v && typeof v==='object' && !Array.isArray(v) ? Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])) : v);
@@ -28,7 +29,7 @@ export function verifyReport(report){
  if(!report||typeof report!=='object'||Array.isArray(report)||Buffer.byteLength(JSON.stringify(report))>MAX_INPUT*2)throw Error('Invalid report');
  const expected=generateReport({topic:report.topic,asOf:report.asOf,maxAgeDays:report.maxAgeDays,limit:report.limit,sources:report.snapshots?.map(({sha256,...s})=>s)});
  // Regeneration checks quoted spans, hashes, exact schema and deterministic ordering.
- if(canonical(report)!==canonical(expected))throw Error('Report integrity or evidence mismatch');
+ if(!isDeepStrictEqual(report,expected))throw Error('Report integrity or evidence mismatch');
  return {valid:true,sha256:expected.sha256,claims:expected.claims.length,authenticityVerified:false};
 }
 export function compareReports(input){

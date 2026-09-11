@@ -1,0 +1,133 @@
+{
+  "baselineCommit": "4702b5124aa3740e2d868f62dad86caef6fd00b8",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "fixture": true,
+  "allCitationResultsEquivalent": true,
+  "equivalenceCases": 40,
+  "inputUnmodified": true,
+  "scope": "Verification; 1000 sources are ten independent bounded100-source reports",
+  "results": [
+    {
+      "sources": 100,
+      "requestsPerIteration": 1,
+      "sourcesPerRequest": 100,
+      "iterationsPerRepetition": 50,
+      "warmupPairs": 30,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "baselineMedianMs": 2.2052459999999883,
+          "candidateMedianMs": 1.8096480000000383,
+          "baselineP95Ms": 2.787977000000012,
+          "candidateP95Ms": 2.269984000000022
+        },
+        {
+          "repetition": 2,
+          "baselineMedianMs": 2.2088919999999916,
+          "candidateMedianMs": 1.8085859999999911,
+          "baselineP95Ms": 3.9835370000000694,
+          "candidateP95Ms": 2.6408739999999398
+        },
+        {
+          "repetition": 3,
+          "baselineMedianMs": 2.1801680000000943,
+          "candidateMedianMs": 1.7833069999999225,
+          "baselineP95Ms": 3.4255319999999756,
+          "candidateP95Ms": 2.2961840000000393
+        },
+        {
+          "repetition": 4,
+          "baselineMedianMs": 2.1031809999999496,
+          "candidateMedianMs": 1.6827759999998761,
+          "baselineP95Ms": 3.5392739999999776,
+          "candidateP95Ms": 2.2455469999999877
+        },
+        {
+          "repetition": 5,
+          "baselineMedianMs": 2.103011999999808,
+          "candidateMedianMs": 1.7413440000000264,
+          "baselineP95Ms": 2.708768000000191,
+          "candidateP95Ms": 2.257955999999922
+        },
+        {
+          "repetition": 6,
+          "baselineMedianMs": 2.0980030000000625,
+          "candidateMedianMs": 1.7081140000000232,
+          "baselineP95Ms": 2.6470339999998487,
+          "candidateP95Ms": 2.228170000000091
+        },
+        {
+          "repetition": 7,
+          "baselineMedianMs": 2.1548389999998108,
+          "candidateMedianMs": 1.7220649999999296,
+          "baselineP95Ms": 2.738412000000153,
+          "candidateP95Ms": 2.5857619999999315
+        }
+      ],
+      "medianOfP95BaselineMs": 2.787977000000012,
+      "medianOfP95CandidateMs": 2.269984000000022
+    },
+    {
+      "sources": 1000,
+      "requestsPerIteration": 10,
+      "sourcesPerRequest": 100,
+      "iterationsPerRepetition": 50,
+      "warmupPairs": 30,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "baselineMedianMs": 21.954897000000074,
+          "candidateMedianMs": 17.56688000000031,
+          "baselineP95Ms": 24.468628999999964,
+          "candidateP95Ms": 18.42708100000027
+        },
+        {
+          "repetition": 2,
+          "baselineMedianMs": 22.08551399999942,
+          "candidateMedianMs": 17.703685999999834,
+          "baselineP95Ms": 25.75246000000061,
+          "candidateP95Ms": 22.76066499999979
+        },
+        {
+          "repetition": 3,
+          "baselineMedianMs": 21.63952000000063,
+          "candidateMedianMs": 17.466237000000547,
+          "baselineP95Ms": 22.76391599999988,
+          "candidateP95Ms": 18.176210999999967
+        },
+        {
+          "repetition": 4,
+          "baselineMedianMs": 21.608877999999095,
+          "candidateMedianMs": 17.54442999999992,
+          "baselineP95Ms": 22.762313000001086,
+          "candidateP95Ms": 18.413393999999244
+        },
+        {
+          "repetition": 5,
+          "baselineMedianMs": 21.74910600000112,
+          "candidateMedianMs": 17.59508300000016,
+          "baselineP95Ms": 22.608415000000605,
+          "candidateP95Ms": 18.377736000000368
+        },
+        {
+          "repetition": 6,
+          "baselineMedianMs": 21.78493900000103,
+          "candidateMedianMs": 17.59928899999977,
+          "baselineP95Ms": 89.58770100000038,
+          "candidateP95Ms": 68.47853399999985
+        },
+        {
+          "repetition": 7,
+          "baselineMedianMs": 21.893513000002713,
+          "candidateMedianMs": 17.62691099999938,
+          "baselineP95Ms": 74.51112099999955,
+          "candidateP95Ms": 67.75809699999809
+        }
+      ],
+      "medianOfP95BaselineMs": 24.468628999999964,
+      "medianOfP95CandidateMs": 18.42708100000027
+    }
+  ]
+}
