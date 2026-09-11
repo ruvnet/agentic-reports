@@ -1,0 +1,38 @@
+name: Reports validation and release artifacts
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['v2.*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts
+      - run: npm audit --audit-level=moderate
+      - run: npm test
+      - run: |
+          mkdir -p artifacts
+          node src/cli.mjs benchmark > artifacts/benchmark.json
+          node src/cli.mjs generate < fixtures/evidence.json > artifacts/report.json
+          node src/cli.mjs verify < artifacts/report.json > artifacts/verification.json
+          node src/cli.mjs html < artifacts/report.json > artifacts/report.html
+          npm pack --ignore-scripts --pack-destination artifacts
+          sha256sum artifacts/* > artifacts/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agentic-reports-${{ github.sha }}
+          path: artifacts/
+          retention-days: 14

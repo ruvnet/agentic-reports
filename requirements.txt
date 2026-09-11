@@ -1,9 +1,1 @@
-fastapi
-pydantic
-pandas
-exa_py
-pytest
-uvicorn
-pydantic_settings
-litellm
-virtualenv
+# The legacy Python network service is retired. Supported Node dependencies are locked in package-lock.json.
